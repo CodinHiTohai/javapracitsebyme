@@ -1,24 +1,44 @@
 import java.util.*;
 
 public class stackB {
+    public static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
     static  class stack{
-        static ArrayList<Integer>list=new ArrayList<>();
+        static Node head=null;
         public static boolean isempty(){
-            return list.size()==0;
+            return head==null;
+        }
+        public static void push(int data){
+            Node newnode=new Node(data);
+            if(isempty()){
+                head=newnode;
+                return;
             }
-        
+             newnode.next=head;
+             head=newnode;
+            
+        }
+        public static int pop(){
+            if(isempty()){
+                return -1;
+            }
+            int top=head.data;
+            head=head.next;
+            return top;
+        }
+        public static int peek(){
+            if(isempty()){
+                return -1;
 
-    public static void push(int data){
-        list.add(data);
-    }
-    public static int pop(){
-        int top=list.get(list.size()-1);
-        list.remove(list.size()-1);
-        return top;
-    }
-    public static int peek(){
-        return list.get(list.size()-1);
-    }
+            }
+            return head.data;
+        }
     }
     public static void main(String[] args) {
         
